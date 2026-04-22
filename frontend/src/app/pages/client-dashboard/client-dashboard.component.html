@@ -1,0 +1,96 @@
+<div class="dashboard-container">
+
+  <!-- 🔝 TOP BAR -->
+  <div class="top-bar">
+    <div>
+      <strong>{{ username }}</strong> ({{ role }})
+    </div>
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <div class="layout">
+
+    <!-- 📂 SIDEBAR -->
+    <div class="sidebar">
+      <h3>Menu</h3>
+      <ul>
+        <li>Dashboard</li>
+        <li>Licenses</li>
+        <li>My Subscriptions</li>
+        <li>My Invoices</li>
+        <li>Notifications</li>
+      </ul>
+    </div>
+
+    <!-- 📊 MAIN AREA -->
+    <div class="main">
+
+      <!-- KPI CARDS -->
+      <div class="cards">
+        <div class="card">
+          <h4>My Licenses</h4>
+          <p>{{ licenses.length }}</p>
+        </div>
+
+        <div class="card">
+          <h4>Invoices</h4>
+          <p>{{ invoices.length }}</p>
+        </div>
+
+        <div class="card">
+          <h4>Notifications</h4>
+          <p>{{ notifications.length }}</p>
+        </div>
+      </div>
+
+      <!-- 📋 TABLE: LICENSES -->
+      <h3>My Licenses</h3>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Expiry</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+
+        <tr *ngFor="let lic of licenses">
+          <td>{{ lic.name }}</td>
+          <td>{{ lic.expiry }}</td>
+          <td>{{ lic.status }}</td>
+          <td>
+            <button (click)="renewLicense(lic)">Renew</button>
+          </td>
+        </tr>
+      </table>
+
+      <!-- 💳 INVOICES -->
+      <h3>My Invoices</h3>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+
+        <tr *ngFor="let inv of invoices">
+          <td>#{{ inv.id }}</td>
+          <td>{{ inv.amount }} €</td>
+          <td>{{ inv.status }}</td>
+          <td>
+            <button (click)="viewInvoice(inv)">View</button>
+          </td>
+        </tr>
+      </table>
+
+      <!-- 🔔 NOTIFICATIONS -->
+      <h3>Notifications</h3>
+      <ul>
+        <li *ngFor="let n of notifications">
+          🔔 {{ n }}
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
